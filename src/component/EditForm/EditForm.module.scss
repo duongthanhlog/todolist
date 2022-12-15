@@ -1,0 +1,33 @@
+.wrapper {
+    width: 100%;
+}
+
+.submit_btn {
+    background-color: blue;
+}
+
+.input {
+    margin-left: -8px;
+}
+
+.button_area {
+    display: flex;
+    margin-left: 12px;
+}
+
+.button_save {
+    background-color: rgb(57, 184, 78);
+    &:hover {
+        background-color: rgb(38, 150, 62);
+    }
+}
+
+
+.button_cancel{
+    color: white;
+    background-color: rgb(175, 23, 196);
+
+    &:hover {
+        background-color:rgb(144, 25, 160);
+    }
+}
