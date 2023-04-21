@@ -1,32 +1,29 @@
 import { useState } from "react";
 import styles from "./TodoForm.module.scss";
 import classNames from "classnames/bind";
+import { useDispatch, useSelector } from "react-redux";
+import { setTodo } from "../../store/todoSlice";
 
 const cx = classNames.bind(styles);
 
+
 function TodoForm({ addTodo }) {
-    const [input, setInput] = useState('')
-    
+    const {todo} = useSelector(state => state.todoList)  
+    const [value, setValue] = useState('')
+    const dispatch = useDispatch()  
+
     const handleChange = (e) => {
-        setInput(e.target.value)
+        setValue(e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(input.trim()) {
-            addTodo({
-              id: Date.now(),
-              text: input,
-              complete : false,
-              editing : false,
-            })
-        }
-        setInput('')
+        dispatch(addTodo(value))
     }
 
     return ( 
         <form onSubmit={handleSubmit}>
-            <input value={input} onChange={handleChange} type="text" placeholder="Enter todo"/>
+            <input value={value} onChange={handleChange} type="text" placeholder="Enter todo"/>
             <button className={cx('submit_btn')}>
                 +
             </button>
