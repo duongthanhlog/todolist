@@ -1,8 +1,8 @@
 import styles from "./TodoItem.module.scss";
 import classNames from "classnames/bind";
-import { CancelDeleteIcon, DeleteIcon, EditIcon } from "../../assests";
+import { DeleteIcon, EditIcon } from "../../assests";
 import EditForm from "../EditForm/EditForm";
-import UseStorage from "../Hooks/UseStorage";
+import useStorage from "../Hooks/useStorage";
 
 const cx = classNames.bind(styles);
 
@@ -11,7 +11,7 @@ function TodoItem(props) {
 
   const handleDelete = () => {
     const newTodos = [...todos].filter((item) => item.id !== todo.id);
-    setTodos(UseStorage('jobs', newTodos));
+    setTodos(newTodos);
   };
 
   const toggleTodo = () => {
@@ -22,7 +22,7 @@ function TodoItem(props) {
         }
         return item;
       });
-      return UseStorage("jobs", newTodos);
+      return newTodos
     });
   };
 
@@ -36,7 +36,7 @@ function TodoItem(props) {
         }
         return item;
       });
-      return UseStorage("jobs", newTodos);
+      return newTodos
     });
   }; 
 
@@ -49,7 +49,7 @@ function TodoItem(props) {
           }
           return item;
         });
-        return UseStorage("jobs", newTodos);
+        return newTodos
       });
     }
   };
@@ -69,6 +69,7 @@ function TodoItem(props) {
       ) : (
         <span>{todo.text}</span>
       )}
+      
       <div className={cx("button_area")}>
         {!todo.editing && (
           <button

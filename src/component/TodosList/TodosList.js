@@ -1,7 +1,7 @@
 import TodoItem from "../TodoItem/TodoItem";
 import { useState } from "react";
 import TodoForm from "../TodoForm/TodoForm";
-import UseStorage from "../Hooks/UseStorage";
+import UseStorage from "../Hooks/useStorage";
 import styles from "./TodosList.module.scss";
 import classNames from "classnames/bind";
 import Footer from "../Footer/Footer";
@@ -10,9 +10,9 @@ import { useEffect } from "react";
 const cx = classNames.bind(styles);
 
 const TodoList = () => {
-  const storageJobs = JSON.parse(localStorage.getItem('jobs'))
+  // const storageJobs = JSON.parse(localStorage.getItem('jobs'))
 
-  const [todos, setTodos] = useState(() =>  storageJobs ?? []);
+  const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all')
   const [filteredTodos, setFilteredTodos] = useState([])
 
@@ -21,10 +21,10 @@ const TodoList = () => {
   useEffect(() => {
     switch(status) {
       case 'completed' : 
-          setFilteredTodos(todos.filter(todo => todo.complete === true))
+          setFilteredTodos(todos.filter(todo => todo.complete))
           break
       case 'uncompleted' : 
-          setFilteredTodos(todos.filter(todo => todo.complete === false))
+          setFilteredTodos(todos.filter(todo => !todo.complete))
           break;
       case 'all' :
           setFilteredTodos(todos)
@@ -34,11 +34,11 @@ const TodoList = () => {
 
 
   const addTodo = (todo) => {
-    setTodos(UseStorage('jobs', [...todos, todo]));
+    setTodos([...todos, todo]);
   };
   
   const handleClearAll = () => {
-    setTodos(UseStorage('jobs', []))
+    setTodos([])
     setStatus('all')
   }
 
