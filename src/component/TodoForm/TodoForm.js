@@ -7,10 +7,9 @@ import { setTodo } from "../../store/todoSlice";
 const cx = classNames.bind(styles);
 
 
-function TodoForm({ addTodo }) {
+function TodoForm({ onAddTodo }) {
     const {todo} = useSelector(state => state.todoList)  
     const [value, setValue] = useState('')
-    const dispatch = useDispatch()  
 
     const handleChange = (e) => {
         setValue(e.target.value)
@@ -18,7 +17,15 @@ function TodoForm({ addTodo }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addTodo(value))
+        if(value.trim()) {
+            onAddTodo({
+                id : Math.floor(Math.random() * 1000000),
+                text : value,
+                completed : false,
+                editing : false
+            })
+        }
+        setValue('')
     }
 
     return ( 

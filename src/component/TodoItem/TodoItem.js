@@ -2,62 +2,36 @@ import styles from "./TodoItem.module.scss";
 import classNames from "classnames/bind";
 import { DeleteIcon, EditIcon } from "../../assests";
 import EditForm from "../EditForm/EditForm";
-import useStorage from "../Hooks/useStorage";
+import { useDispatch } from "react-redux";
+import {  handleEditTodo, handleUpdateTodo, removeTodo, toggleCompleteTodo } from "../../store/todoSlice";
 
 const cx = classNames.bind(styles);
 
 function TodoItem(props) {
   const { setTodos, todos, todo } = props;
+  const dispatch = useDispatch()
 
   const handleDelete = () => {
-    const newTodos = [...todos].filter((item) => item.id !== todo.id);
-    setTodos(newTodos);
+    dispatch(removeTodo(todo))
   };
-
   const toggleTodo = () => {
-    setTodos((prev) => {
-      const newTodos = prev.map((item) => {
-        if (item.id === todo.id) {
-          return { ...item, complete: !item.complete };
-        }
-        return item;
-      });
-      return newTodos
-    });
-  };
+    dispatch(toggleCompleteTodo(todo))
+  }
 
   
   const handleEdit = (e) => {
     e.stopPropagation();
-    setTodos((prev) => {
-      const newTodos = prev.map((item) => {
-        if (item.id === todo.id) {
-          return { ...item, editing: !item.editing };
-        }
-        return item;
-      });
-      return newTodos
-    });
+    dispatch(handleEditTodo(todo))
   }; 
 
   const updateTodo = (value) => {
-    if (value.trim()) {
-      setTodos((prev) => {
-        const newTodos = prev.map((item) => {
-          if (item.id === todo.id) {
-            return { ...item, text: value, editing: false };
-          }
-          return item;
-        });
-        return newTodos
-      });
-    }
+      dispatch(handleUpdateTodo(todo, value))
   };
 
   return (
     <div
       onClick={!todo.editing ? toggleTodo : () => {}}
-      className={cx("todo_item", { complete: todo.complete })}
+      className={cx("todo_item", { complete: todo.completed })}
     >
       {todo.editing ? (
         <EditForm

@@ -5,12 +5,15 @@ import { CancelDeleteIcon, CheckIcon } from "../../assests";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { forwardRef } from "react";
+import { useDispatch } from "react-redux";
+import { handleCancelUpdataTodo } from "../../store/todoSlice";
 
 const cx = classNames.bind(styles);
 
-function EditForm({ onSubmit, setTodos, todo }) {
+function EditForm({ onSubmit, todo }) {
   let [input, setInput] = useState("");
   const inputRef = useRef();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     inputRef.current.focus();
@@ -22,16 +25,13 @@ function EditForm({ onSubmit, setTodos, todo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(input);
+    if(input.trim()) {
+      onSubmit(input);
+    }
   };
 
   const handleCancel = () => {
-    setTodos(prev => prev.map(item => {
-        if(item.id === todo.id) {
-            return {...item, editing: false}
-        }
-        return item
-    }))
+    dispatch(handleCancelUpdataTodo(todo))
   }
 
   return (
