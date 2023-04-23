@@ -17,6 +17,7 @@
 
 .button_save {
     background-color: rgb(57, 184, 78);
+    border-radius: 8px;
     &:hover {
         background-color: rgb(38, 150, 62);
     }
@@ -26,6 +27,8 @@
 .button_cancel{
     color: white;
     background-color: rgb(175, 23, 196);
+    margin-left: 4px;
+    border-radius: 8px;
 
     &:hover {
         background-color:rgb(144, 25, 160);

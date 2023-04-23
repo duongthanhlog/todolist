@@ -7,7 +7,7 @@ const todoSlice = createSlice({
     },
     reducers: {
         addTodo: (state, action) => {
-            state.todos = [...state.todos, action.payload]
+            state.todos.push(action.payload)
         },
         removeTodo: (state, action) => {
             const newTodos = state.todos.filter(item => item.id !== action.payload.id)
@@ -22,7 +22,7 @@ const todoSlice = createSlice({
             })
             state.todos = newTodos
         },
-        handleEditTodo: (state, action) => {
+        editTodo: (state, action) => {
             const newTodos = state.todos.map(item => {
                 if (item.id === action.payload.id) {
                     return { ...item, editing: true }
@@ -31,7 +31,7 @@ const todoSlice = createSlice({
             })
             state.todos = newTodos
         },
-        handleUpdateTodo: (state, action) => {
+        updateTodo: (state, action) => {
             const { todo, value } = action.payload
             const newTodos = state.todos.map((item) => {
                 if (item.id === todo.id) {
@@ -41,7 +41,7 @@ const todoSlice = createSlice({
             });
             state.todos = newTodos
         },
-        handleCancelUpdataTodo: (state, action) => {
+        cancelUpdateTodo: (state, action) => {
             const newTodos = state.todos.map(item => {
                 if (item.id === action.payload.id) {
                     return { ...item, editing: false }
@@ -50,11 +50,11 @@ const todoSlice = createSlice({
             })
             state.todos = newTodos
         },
-        handleRemoveAll : (state) => {
+        clearAllTodo : (state) => {
             state.todos = []
         }
     }
 })
 
-export const { addTodo, removeTodo, handleRemoveAll, setTodo, toggleCompleteTodo, handleEditTodo, handleUpdateTodo, handleCancelUpdataTodo } = todoSlice.actions
+export const { addTodo, removeTodo, clearAllTodo, setTodo, toggleCompleteTodo, editTodo, updateTodo, cancelUpdateTodo } = todoSlice.actions
 export default todoSlice.reducer

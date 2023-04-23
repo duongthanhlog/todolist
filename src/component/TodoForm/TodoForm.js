@@ -1,14 +1,11 @@
 import { useState } from "react";
 import styles from "./TodoForm.module.scss";
 import classNames from "classnames/bind";
-import { useDispatch, useSelector } from "react-redux";
-import { setTodo } from "../../store/todoSlice";
 
 const cx = classNames.bind(styles);
 
 
 function TodoForm({ onAddTodo }) {
-    const {todo} = useSelector(state => state.todoList)  
     const [value, setValue] = useState('')
 
     const handleChange = (e) => {
