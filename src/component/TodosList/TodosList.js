@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../store/todoSlice";
+import { addTodo } from "../../store/Slices/todoSlice";
 import { filterTodosSelector } from "../../store/selectors";
-import { changeStatus } from "../../store/filterSlice";
-import { clearAllTodo } from "../../store/todoSlice";
+import { changeStatus } from "../../store/Slices/filterSlice";
+import { clearAllTodo } from "../../store/Slices/todoSlice";
 
 import TodoItem from "../TodoItem/TodoItem";
 import TodoForm from "../TodoForm/TodoForm";
 import styles from "./TodosList.module.scss";
 import classNames from "classnames/bind";
 import Footer from "../Footer/Footer";
+import { saveToStorage } from "../../store/store";
 
 const cx = classNames.bind(styles);
 

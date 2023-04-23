@@ -3,7 +3,6 @@ import { createSelector } from "@reduxjs/toolkit"
 export const selectTodos = state => state.todoList.todos
 export const selectFilterTodos = state => state.filter
 
-
 export const filterTodosSelector = createSelector(
     [selectTodos, selectFilterTodos],
     (todos, filteredTodos) => {

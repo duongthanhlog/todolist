@@ -3,7 +3,7 @@ import styles from "./EditForm.module.scss";
 import classNames from "classnames/bind";
 import { CancelDeleteIcon, CheckIcon } from "../../assests";
 import { useDispatch } from "react-redux";
-import { cancelUpdateTodo } from "../../store/todoSlice";
+import { cancelUpdateTodo } from "../../store/Slices/todoSlice";
 
 const cx = classNames.bind(styles);
 

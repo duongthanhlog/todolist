@@ -3,6 +3,17 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgb(61, 61, 119);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(89, 89, 143);
+        border-radius: 4px;
+    }
 }
 
 button {
