@@ -32,20 +32,24 @@ function TodoItem({ todo }) {
       onClick={!todo.editing ? toggleTodo : () => { }}
       className={cx("todo_item", { complete: todo.completed })}
     >
-      {todo.editing && <EditForm todo={todo} onUpdate={handleUpdate}/>}
+      {todo.editing ? <EditForm todo={todo} onUpdate={handleUpdate}/> :
 
-      {!todo.editing && <span>{todo.text}</span>}
-      {!todo.editing && <div className={cx("button_area")}>
-        <button
-          onClick={todo.editing ? handleUpdate : handleEdit}
-          className={cx("edit_btn")}
-        >
-          <EditIcon width="16px" height="16px" className={cx("icon")} />
-        </button>
-        <button className={cx("delete_btn")} onClick={handleDelete}>
-          <DeleteIcon width="16px" height="16px" className={cx("icon")} />
-        </button>
-      </div>}
+      <div className={cx('todo_wrapper')}>
+        <span >{todo.text}</span>
+          
+       <div className={cx("button_area")}>
+          <button
+            onClick={todo.editing ? handleUpdate : handleEdit}
+            className={cx("edit_btn")}
+          >
+            <EditIcon width="16px" height="16px" className={cx("icon")} />
+          </button>
+          <button className={cx("delete_btn")} onClick={handleDelete}>
+            <DeleteIcon width="16px" height="16px" className={cx("icon")} />
+          </button>
+                </div>
+      </div>
+  }
     </div>
   );
 }

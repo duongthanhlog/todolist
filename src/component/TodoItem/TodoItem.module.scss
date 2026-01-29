@@ -5,13 +5,12 @@
     padding: 8px 16px;
     height: 36px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     user-select: none;
-    
-    span {
-        position: relative;
-        margin-top: -2px;
+
+    .todo_wrapper {
+        display: flex;
+        width: 100%;
     }
 }
 
@@ -64,4 +63,8 @@
 
 .edit_input {
     margin-right: 10px;
+}
+
+.button_area {
+    margin-left: auto;
 }
