@@ -1,0 +1,51 @@
+.wrapper {
+    margin-top: 20px;
+}
+
+.clear-all_btn {
+    background-color: #f44336;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: #cf3227;
+    }
+}
+.complete_btn {
+    border: 1px solid #9528b6;
+    background-color: transparent;
+}
+
+.Un-complete_btn {
+    background-color: transparent;
+    border: 1px solid #b4aa1a ;
+}
+
+.all_btn {
+    background-color: transparent;
+    border: 1px solid #1fa7a7;
+}
+
+.selections {
+    background-color: rgb(105, 105, 105);
+    border: none;
+    outline: none;
+    color: white;
+    padding: 4px 8px ;
+    cursor: pointer;
+    
+
+    option {
+        cursor: pointer;
+    }
+}
+
+.remaining_todo {
+    color: rgb(161, 161, 161);
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
